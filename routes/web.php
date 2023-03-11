@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExtractJobOfferController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ExtractJobOfferController::class, 'index']);
+
+Route::post('/extractJobOffer', [ExtractJobOfferController::class, 'extractJobOffer'])->name('extractJobOffer');
