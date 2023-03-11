@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use OpenAI;
+use OpenAI\Laravel\Facades\OpenAI;
 
 class ExtractJobOfferController extends Controller
 {
@@ -25,16 +25,19 @@ class ExtractJobOfferController extends Controller
         $prompt = $jobOffer;
         $prompt .= "\r\n" . "Tl;dr";
 
-        $client = OpenAI::client(env("OPEN_AI_API_KEY"));
+       // $client = OpenAI::client(env("OPEN_AI_API_KEY"));
 
-        $result = $client->completions()->create([
+  /*       $result = $client->completions()->create([
             'model' => 'text-davinci-003', // The most expensive one, but the best.
             'prompt' => $prompt,
             'max_tokens' => 500, // A token is a basically a word.
-        ]);
+        ]); */
 
-        dd($result);
+        dd(OpenAI::completions()->create([
+            'model' => 'text-davinci-003',
+            'prompt' => $prompt,
+            'max_tokens' => 500,
+        ]));
 
-        return $jobOffer;
     }
 }
