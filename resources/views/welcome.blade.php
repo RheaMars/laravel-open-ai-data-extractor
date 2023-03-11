@@ -11,13 +11,19 @@
             <h4>Gib hier einen Text ein, für den du eine Zusammenfassung haben willst:</h4>
             <form action="{{route("requestSummary")}}" method="POST">
                 @csrf
-                <label for="longText">Texteingabe:</label>
-                <textarea name="longText" id="longText"></textarea>
-                <button type="submit">Absenden</button>
+                <p>
+                    <label for="longText">Texteingabe:</label>
+                </p>
+                <p>
+                    <textarea rows="20" cols="70" name="longText" id="longText" required>{{ $longText }}</textarea>
+                </p>
+                <p>
+                    <button type="submit">Absenden</button>
+                </p>
             </form>
-            <div>
+            <p style="max-width: 600px">
                 {{ $summary }}
-            </div>
+            </p>
         </div>
     </body>
 </html>

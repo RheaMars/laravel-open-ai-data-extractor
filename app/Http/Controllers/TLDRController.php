@@ -9,17 +9,17 @@ class TLDRController extends Controller
 {
     public function index()
     {
-        return view("welcome")->with('summary', '');
+        return view("welcome")
+            ->with('summary', '')
+            ->with('longText', '');
     }
 
     public function requestSummary(Request $request)
     {
         $longText = $request->longText;
 
-
         $prompt = $longText;
         $prompt .= "\r\n" . "Tl;dr";
-
 
         $result = OpenAI::completions()->create([
             'model' => 'text-davinci-003',
@@ -28,8 +28,11 @@ class TLDRController extends Controller
         ]);
 
         $summary = $result['choices'][0]['text'];
+        $summary = trim($summary, ": ");
 
-        return view('welcome')->with('summary', $summary);
+        return view('welcome')
+            ->with('summary', $summary)
+            ->with('longText', $longText);
 
     }
 }
