@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ExtractJobOfferController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TLDRController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ExtractJobOfferController::class, 'index']);
+Route::get('/', [TLDRController::class, 'index']);
 
-Route::post('/extractJobOffer', [ExtractJobOfferController::class, 'extractJobOffer'])->name('extractJobOffer');
+Route::post('/', [TLDRController::class, 'requestSummary'])->name('requestSummary');
